@@ -1,4 +1,4 @@
-import {useEffect,useMemo,useState} from 'react';
+import React,{useEffect,useMemo,useState} from 'react';
 import {ArrowDownLeft,ArrowUpRight,BarChart3,BookOpen,Building2,FileDown,FileText,Home,LogOut,Menu,Plus,Receipt,Search,Settings,UploadCloud,Wallet, X} from 'lucide-react';
 import {configured,supabase} from './lib/supabase';
 
