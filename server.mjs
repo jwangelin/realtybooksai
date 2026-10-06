@@ -3,7 +3,8 @@ import {readFile,stat} from 'node:fs/promises';
 import {extname,join,normalize,resolve} from 'node:path';
 const root=resolve('dist');
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.ico':'image/x-icon'};
-const port=Number(process.env.PORT||3000);
+// Railway's public domain targets port 3000 for this service.
+const port=3000;
 createServer(async(req,res)=>{
   const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
   const path=resolve(root,'.'+normalize(pathname));
