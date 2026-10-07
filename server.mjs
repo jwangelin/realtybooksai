@@ -1,4 +1,5 @@
 import {createServer} from 'node:http';
+import {handlePlaid} from './plaidApi.mjs';
 import {readFile,stat} from 'node:fs/promises';
 import {extname,join,normalize,resolve} from 'node:path';
 const root=resolve('dist');
@@ -7,6 +8,7 @@ const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=u
 const port=3000;
 createServer(async(req,res)=>{
   const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
+  if (pathname.startsWith('/api/plaid/')) { await handlePlaid(req,res,pathname); return; }
   const path=resolve(root,'.'+normalize(pathname));
   if(!path.startsWith(root+'/')&&path!==root){res.writeHead(403).end();return}
   try{
